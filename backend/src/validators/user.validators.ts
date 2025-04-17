@@ -2,6 +2,7 @@ import { Request } from "express";
 import { body } from "express-validator";
 
 const userRegisterValidator = (): any => {
+  
   return [
     body("email")
       .trim()

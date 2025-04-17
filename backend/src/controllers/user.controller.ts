@@ -12,6 +12,7 @@ import { cookieValidity, environment, tokenInfo } from "../config";
 
 const signUp = asyncHandler(async (req: Request, res: Response) => {
   const { email, username, password } = req.body;
+  console.log("yes",req.body);
 
   const existingUserEmail = await userRepo.findByEmail(email);
   if (existingUserEmail) {

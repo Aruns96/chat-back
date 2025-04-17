@@ -8,8 +8,11 @@ import { validate } from "../validators/validate";
 
 const router = express.Router();
 
+// router.post("/register",  signUp);
+
 router.post("/register", userRegisterValidator(), validate, signUp);
-router.post("/login", userLoginValidator(), validate, login);
+router.post("/login", userLoginValidator(),  login);
+// router.post("/login", userLoginValidator(), validate, login);
 router.post("/logout", logout);
 
 export default router;

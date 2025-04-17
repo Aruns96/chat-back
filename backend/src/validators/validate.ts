@@ -5,7 +5,8 @@ import { BadRequestError } from "../core/ApiError";
 const validate = (req: Request, res: Response, next: NextFunction) => {
   try {
     const errors = validationResult(req);
-
+    
+  
     // if no errors then return next
     if (errors.isEmpty()) {
       return next();

@@ -8,7 +8,7 @@ export const splitAccessToken = (token: string) => {
   if (!token) throw new AuthFailureError("missing authorization token");
 
   if (!token.startsWith("Bearer "))
-    throw new AuthFailureError("inalid authorization token");
+    throw new AuthFailureError("invalid authorization token");
 
   return token.split(" ")[1];
 };

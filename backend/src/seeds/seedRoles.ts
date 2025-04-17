@@ -21,6 +21,7 @@ const seedRoles = async () => {
     }
   } catch (error) {
     colorsUtils.log("error", "Roles seeding failed");
+    console.error("Actual error:", error); // 👈 
   }
 };
 

@@ -25,6 +25,12 @@ const app = express();
 // creation of http server
 const httpServer = createServer(app);
 
+app.use((req, res, next) => {
+  console.log("🛰️ Request received:", req.method, req.url);
+  next();
+});
+
+
 // middleware to get the ip of client from the request
 app.use(requestIp.mw());
 
@@ -56,7 +62,7 @@ app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(
   cors({
-    origin: corsUrl,
+    origin: 'http://localhost:5173', // corsUrl
     optionsSuccessStatus: 200,
     credentials: true,
   })
@@ -96,26 +102,26 @@ initSocketIo(io);
 app.set("io", io); // using set method to mount 'io' instance on app
 
 // middleware error handlers
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  if (err instanceof ApiError) {
-    ApiError.handle(err, res);
-    if (err.type === ErrorType.INTERNAL)
-      console.error(
-        `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}` +
-          "\n" +
-          `Error Stack: ${err.stack}`
-      );
-  } else {
-    console.error(
-      `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}` +
-        "\n" +
-        `Error Stack: ${err.stack}`
-    );
-    if (environment === "development") {
-      return res.status(500).send(err.stack);
-    }
-    ApiError.handle(new InternalError(), res);
-  }
-});
+// app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+//   if (err instanceof ApiError) {
+//     ApiError.handle(err, res);
+//     if (err.type === ErrorType.INTERNAL)
+//       console.error(
+//         `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}` +
+//           "\n" +
+//           `Error Stack: ${err.stack}`
+//       );
+//   } else {
+//     console.error(
+//       `500 - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}` +
+//         "\n" +
+//         `Error Stack: ${err.stack}`
+//     );
+//     if (environment === "development") {
+//       return res.status(500).send(err.stack);
+//     }
+//     ApiError.handle(new InternalError(), res);
+//   }
+// });
 
 export default httpServer;

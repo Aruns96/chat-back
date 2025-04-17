@@ -17,8 +17,12 @@ export const verifyJWT = asyncHandler(
       req.cookies?.accessToken ||
       req.header("Authorization")?.replace("Bearer ", "");
 
+    // if (!token) {
+    //   throw new BadTokenError("No token provided");
+    // }
     if (!token) {
-      throw new BadTokenError("No token provided");
+      // Allow requests without a token temporarily
+      return next();
     }
 
     try {

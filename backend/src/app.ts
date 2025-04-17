@@ -1,4 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
+import dotenv from "dotenv";
+dotenv.config();
+
 import cors from "cors";
 import { corsUrl, environment } from "./config";
 import authRoutes from "./routes/user.routes";

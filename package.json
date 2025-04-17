@@ -1,0 +1,25 @@
+{
+  "name": "zenchat",
+  "version": "1.0.0",
+  "description": "![zenChat](./screenshots/hero_dark1.png)",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix backend",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnkitKumar8080/zenChat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnkitKumar8080/zenChat/issues"
+  },
+  "homepage": "https://github.com/AnkitKumar8080/zenChat#readme",
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
+  }
+}

@@ -4,11 +4,10 @@
   "description": "backend for zenchat chat service ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r tsconfig-paths/register src/server.ts",
-    "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/server.js"
-  },
+  "dev": "nodemon -r tsconfig-paths/register src/server.ts",
+  "build": "node --max-old-space-size=1024 ./node_modules/.bin/tsc",
+  "start": "node --max-old-space-size=1024 dist/server.js"
+},
   "keywords": [
     "chat_app_backend",
     "chatapp",
